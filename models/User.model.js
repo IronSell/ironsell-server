@@ -24,7 +24,6 @@ const userSchema = new Schema(
     telephoneNumber: {
       type: Number,
       maxlength: 9,
-      match: 3,
       required: [true, 'Number is required'],
     },
     postalCode: {
