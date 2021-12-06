@@ -17,6 +17,7 @@ const companySchema = new Schema(
       type: String,
       maxlength: 9,
       required: [true, 'CIF is required'],
+      unique: true,
     },
     address: {
       type: String,
@@ -30,7 +31,7 @@ const companySchema = new Schema(
       type: [Schema.Types.ObjectId],
       ref: 'JobOffer',
     },
-    companyUrl: [{type: Schema.Types.Url}],
+    companyUrl: [{ type: Schema.Types.Url }],
   },
   {
     timestamps: true,
