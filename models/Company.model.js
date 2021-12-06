@@ -6,29 +6,32 @@ const companySchema = new Schema(
   {
     name: {
       type: String,
-      required: [ true, 'Company name is required' ],
+      required: [true, 'Company name is required'],
       unique: true,
     },
-    professionalSector:{ 
-      string, required: [ true, 'Professioanl sector is required']
-     },
-    cif:{
-        string, maxlength: 9
+    professionalSector: {
+      type: String,
+      required: [true, 'Professioanl sector is required'],
     },
-    address:{
-      string, required: [true, 'Address is required']
+    cif: {
+      type: String,
+      maxlength: 9,
+      required: [true, 'CIF is required'],
     },
-    province:{
-      string, required: [true, 'Province is required']
+    address: {
+      type: String,
+      required: [true, 'Address is required'],
     },
-    jobOffers:{ 
-      type: [Schema.Types.ObjectId], ref: "JobOffer"
+    province: {
+      type: String,
+      required: [true, 'Province is required'],
     },
-    url:{
-      company: [Schema.Types.Url]
-    }
+    jobOffers: {
+      type: [Schema.Types.ObjectId],
+      ref: 'JobOffer',
+    },
+    companyUrl: [{type: Schema.Types.Url}],
   },
-    
   {
     timestamps: true,
   }
@@ -37,8 +40,3 @@ const companySchema = new Schema(
 const Company = model('Company', companySchema);
 
 module.exports = Company;
-
-
-
-
-
