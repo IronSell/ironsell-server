@@ -1,26 +1,75 @@
 const { Schema, model } = require('mongoose');
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
+require('mongoose-type-url');
+
 const userSchema = new Schema(
   {
+    name: { type: String, required: [true, 'Name is required'] },
+    lastName: { type: String, required: [true, 'Last name is required'] },
     email: {
       type: String,
+      match: [/\S+@\S+\.\S+/, 'Email is not valid'],
+      lowercase: true,
+      trim: true,
       unique: true,
       required: [true, 'Username is required'],
-      match: [/\S+@\S+\.\S+/, 'Email is not valid'],
+    },
+    password: {
+      type: String,
+      match: [/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/, 'Password is not valid'],
+      required: [true, 'Password is required'],
       trim: true,
     },
-    password:{
-      type: String,
+    birth: { type: Date, required: [true, 'Birth is required'] },
+    telephoneNumber: {
+      type: Number,
+      maxlength: 9,
+      match: 3,
+      required: [true, 'Number is required'],
     },
-    professionalExperience: [{
-      companyName: {type: String, required: [true, 'Company name is required']},
-      jobTitle: {type: String, required: [true, 'Job title is required']},
-      jobDescription: {type: String, required: [true, 'Job description is required']},
-      startDate: {type: Date, required: [true, 'Start date is required']},
-      endDate: Date,
-      salary: Number,
-    }] 
+    postalCode: {
+      type: Number,
+      maxlength: 5,
+      required: [true, 'Postal code is required'],
+    },
+    province: { type: String, required: [true, 'Province is required'] },
+    profilePicture: {
+      type: String,
+      default: '',
+    },
+    professionalProfiles: [{ type: Schema.Types.Url }],
+    professionalExperience: [
+      {
+        companyName: {
+          type: String,
+          required: [true, 'Company name is required'],
+        },
+        jobTitle: { type: String, required: [true, 'Job title is required'] },
+        jobDescription: {
+          type: String,
+          required: [true, 'Job description is required'],
+        },
+        startDate: { type: Date, required: [true, 'Start date is required'] },
+        endDate: { type: Date },
+        salary: { type: Number },
+      },
+    ],
+    studiesLevel: {
+      type: String,
+      required: [true, 'Studies level is required'],
+    },
+    savedJobs: {
+      type: [Schema.Types.ObjectId],
+      ref: 'JobOffer',
+    },
+    appliedJobs: {
+      type: [Schema.Types.ObjectId],
+      ref: 'JobOffer',
+    },
+    favoriteCompanies: {
+      type: [Schema.Types.ObjectId],
+      ref: 'Company',
+    },
   },
   {
     timestamps: true,
@@ -30,22 +79,3 @@ const userSchema = new Schema(
 const User = model('User', userSchema);
 
 module.exports = User;
-
-// name (string, required)
-// lastName (string, required)
-// password (string, unique, match, required)
-// email (string, unique, match: [/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/, 'Password is not valid'], lowercase: true, required)
-// birth (date, required: {true, 'You must be 18 years old'})
-// mobileNumber (number, maxlength: 9, match: [])
-// postalCode (number, required:[true, 'Postal code is required'])
-// province (string, required: [true, 'Province is required'])
-// profilePicture (string, default: 'url img predeterminada')
-// professionalExperience: [{
-//   companyName: String,
-//   jobDescription: String,
-//   startDate: Date,
-// }]
-// studiesLevel (string, required: [true, 'Studies level is required'])
-// savedjobOffers ({type: Schema.Types.ObjectId, ref: 'JobOffer'})
-// appliedJobOffers ({type: Schema.Types.ObjectId, ref: 'JobOffer'})
-// favoriteCompanies ({type: Schema.Types.ObjectId, ref: 'Company'})

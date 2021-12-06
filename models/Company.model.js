@@ -32,6 +32,7 @@ const companySchema = new Schema(
       ref: 'JobOffer',
     },
     companyUrl: [{ type: Schema.Types.Url }],
+    companyLogo: { type: String, default: '' },
   },
   {
     timestamps: true,
