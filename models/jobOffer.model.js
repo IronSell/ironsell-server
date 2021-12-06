@@ -10,12 +10,18 @@ const jobOfferSchema = new Schema(
       type: Number,
       required: [true, 'experiencie Years is required'],
     },
-    Salary:{
+    salary:{
       type: Number,
       required: [true, 'Salary is required'],
     },
     province:{
       string, required: [true, 'Province is required']
+    },
+    description:{
+      string, required: [true, 'Description is required']
+    },
+    schedule: {
+      string, required: [true, 'Schedule is required']
     }
   },
   {
@@ -23,6 +29,7 @@ const jobOfferSchema = new Schema(
   }
 );
 
-const JobOffer = model('JobTitle', jobOfferSchema);
+const JobOffer = model('JobOffer', jobOfferSchema);
 
 module.exports = JobOffer;
+
