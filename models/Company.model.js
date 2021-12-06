@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 
+require('mongoose-type-url');
+
 const companySchema = new Schema(
   {
     name: {
@@ -7,7 +9,7 @@ const companySchema = new Schema(
       required: [ true, 'Company name is required' ],
       unique: true,
     },
-    professioanlSector:{ 
+    professionalSector:{ 
       string, required: [ true, 'Professioanl sector is required']
      },
     cif:{
@@ -21,7 +23,10 @@ const companySchema = new Schema(
     },
     jobOffers:{ 
       type: [Schema.Types.ObjectId], ref: "JobOffer"
-     }
+    },
+    url:{
+      company: [Schema.Types.Url]
+    }
   },
     
   {
