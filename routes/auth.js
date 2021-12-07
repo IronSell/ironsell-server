@@ -10,7 +10,7 @@ const saltRounds = 10;
 // Require the User model in order to interact with the database
 const User = require('../models/User.model');
 const Session = require('../models/Session.model');
-const Company = require('../models/Company.model')
+const Company = require('../models/Company.model');
 
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require('../middleware/isLoggedOut');
@@ -95,13 +95,29 @@ router.post('/signup/user', isLoggedOut, (req, res) => {
   });
 });
 
-
 // POST create company
 router.post('/signup/company', isLoggedOut, (req, res) => {
-  const { name, email, password, professionalSector, cif, address, province, companyUrl} =
-    req.body;
+  const {
+    name,
+    email,
+    password,
+    professionalSector,
+    cif,
+    address,
+    province,
+    companyUrl,
+  } = req.body;
 
-  if (!name || !email || !password || !professionalSector || !cif || !address || !province || !companyUrl) {
+  if (
+    !name ||
+    !email ||
+    !password ||
+    !professionalSector ||
+    !cif ||
+    !address ||
+    !province ||
+    !companyUrl
+  ) {
     return res.status(400).json({ errorMessage: 'Please fill all inputs.' });
   }
 
@@ -156,8 +172,6 @@ router.post('/signup/company', isLoggedOut, (req, res) => {
   });
 });
 
-
-
 // POST login user
 router.post('/login/user', isLoggedOut, (req, res, next) => {
   const { email, password } = req.body;
@@ -203,7 +217,6 @@ router.post('/login/user', isLoggedOut, (req, res, next) => {
     });
 });
 
-
 // POST login company
 router.post('/login/company', isLoggedOut, (req, res, next) => {
   const { email, password } = req.body;
@@ -248,7 +261,6 @@ router.post('/login/company', isLoggedOut, (req, res, next) => {
       // return res.status(500).render("login", { errorMessage: err.message });
     });
 });
-
 
 router.delete('/logout', isLoggedIn, (req, res) => {
   Session.findByIdAndDelete(req.headers.authorization)
