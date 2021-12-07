@@ -3,7 +3,6 @@ const router = require('express').Router();
 // Models
 const Company = require('../models/Company.model');
 
-
 //Middleware
 const isLoggedIn = require('../middleware/isLoggedIn');
 const isLoggedOut = require('../middleware/isLoggedOut');
@@ -22,9 +21,11 @@ router.get('/:_id', async (req, res) => {
 
 router.patch('/update/:_id', isLoggedIn, async (req, res) => {
   try {
-    const editCompnay = await Company.findByIdAndUpdate(req.params._id)
-    return res.status(200).json({ message: 'Company edited', editCompany })
-  } catch
-})
+    const editCompnay = await Company.findByIdAndUpdate(req.params._id);
+    return res.status(200).json({ message: 'Company edited', editCompany });
+  } catch (err) {
+    return res.status(400).json({ message: 'Cannot update the company' });
+  }
+});
 
 module.exports = router;
