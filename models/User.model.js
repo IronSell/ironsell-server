@@ -37,22 +37,20 @@ const userSchema = new Schema(
       default: '',
     },
     professionalProfiles: [{ type: Schema.Types.Url }],
-    professionalExperience: [
-      {
-        companyName: {
-          type: String,
-          required: [true, 'Company name is required'],
-        },
-        jobTitle: { type: String, required: [true, 'Job title is required'] },
-        jobDescription: {
-          type: String,
-          required: [true, 'Job description is required'],
-        },
-        startDate: { type: Date, required: [true, 'Start date is required'] },
-        endDate: { type: Date },
-        salary: { type: Number },
+    professionalExperience: {
+      companyName: {
+        type: String,
+        required: [true, 'Company name is required'],
       },
-    ],
+      jobTitle: { type: String, required: [true, 'Job title is required'] },
+      jobDescription: {
+        type: String,
+        required: [true, 'Job description is required'],
+      },
+      startDate: { type: Date, required: [true, 'Start date is required'] },
+      endDate: { type: Date },
+      salary: { type: Number },
+    },
     studiesLevel: {
       type: String,
       required: [true, 'Studies level is required'],

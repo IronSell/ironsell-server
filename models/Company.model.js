@@ -9,6 +9,14 @@ const companySchema = new Schema(
       required: [true, 'Company name is required'],
       unique: true,
     },
+    email: {
+      type: String,
+      match: [/\S+@\S+\.\S+/, 'Email is not valid'],
+      lowercase: true,
+      trim: true,
+      unique: true,
+      required: [true, 'Username is required'],
+    },
     professionalSector: {
       type: String,
       required: [true, 'Professioanl sector is required'],
