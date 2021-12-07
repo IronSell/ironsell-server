@@ -17,6 +17,12 @@ const companySchema = new Schema(
       unique: true,
       required: [true, 'Username is required'],
     },
+    password: {
+      type: String,
+      match: [/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/, 'Password is not valid'],
+      required: [true, 'Password is required'],
+      trim: true,
+    },
     professionalSector: {
       type: String,
       required: [true, 'Professional sector is required'],

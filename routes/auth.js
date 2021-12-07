@@ -10,6 +10,7 @@ const saltRounds = 10;
 // Require the User model in order to interact with the database
 const User = require('../models/User.model');
 const Session = require('../models/Session.model');
+const Company = require('../models/Company.model')
 
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require('../middleware/isLoggedOut');
@@ -35,7 +36,7 @@ router.get('/session', (req, res) => {
 });
 
 // POST create user
-router.post('/signup', isLoggedOut, (req, res) => {
+router.post('/signup/user', isLoggedOut, (req, res) => {
   const { name, lastName, password, email, birth, province, postalCode } =
     req.body;
 
@@ -93,6 +94,70 @@ router.post('/signup', isLoggedOut, (req, res) => {
       });
   });
 });
+
+
+// POST create company
+router.post('/signup/company', isLoggedOut, (req, res) => {
+  const { name, email, password, professionalSector, cif, address, province, companyUrl} =
+    req.body;
+
+  if (!name || !email || !password || !professionalSector || !cif || !address || !province || !companyUrl) {
+    return res.status(400).json({ errorMessage: 'Please fill all inputs.' });
+  }
+
+  // This use case is using a regular expression to control for special characters and min length
+  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+
+  if (!regex.test(password)) {
+    return res.status(400).json({
+      errorMessage:
+        'Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.',
+    });
+  }
+
+  // Search the database for a user with the username submitted in the form
+  Company.findOne({ email }).then((found) => {
+    // If the user is found, send the message username is taken
+    if (found) {
+      return res.status(400).json({ errorMessage: 'Email already taken.' });
+    }
+
+    // if user is not found, create a new user - start with hashing the password
+    return bcrypt
+      .genSalt(saltRounds)
+      .then((salt) => bcrypt.hash(password, salt))
+      .then((hashedPassword) => {
+        // Create a user and save it in the database
+        return Company.create({
+          email,
+          password: hashedPassword,
+        });
+      })
+      .then((user) => {
+        Session.create({
+          user: user._id,
+          createdAt: Date.now(),
+        }).then((session) => {
+          res.status(201).json({ user, accessToken: session._id });
+        });
+      })
+      .catch((error) => {
+        if (error instanceof mongoose.Error.ValidationError) {
+          return res.status(400).json({ errorMessage: error.message });
+        }
+        if (error.code === 11000) {
+          return res.status(400).json({
+            errorMessage:
+              'Email need to be unique. The username you chose is already in use.',
+          });
+        }
+        return res.status(500).json({ errorMessage: error.message });
+      });
+  });
+});
+
+
+
 
 router.post('/login', isLoggedOut, (req, res, next) => {
   const { email, password } = req.body;
