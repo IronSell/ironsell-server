@@ -35,6 +35,16 @@ router.get('/session', (req, res) => {
     });
 });
 
+// GET login/signup user page
+router.get('/login-user', isLoggedOut, async (req, res) => {
+  res.json('You have get login/singup user poage');
+});
+
+//GET login/singup company page
+router.get('/login-company', isLoggedOut, async (req, res) => {
+  res.json('Yopu have get login/signup company page');
+});
+
 // POST create user
 router.post('/signup/user', isLoggedOut, (req, res) => {
   const { name, lastName, password, email, birth, province, postalCode } =
