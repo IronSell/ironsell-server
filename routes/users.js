@@ -18,25 +18,6 @@ router.get('/profile', isLoggedIn, async (req, res) => {
   }
 });
 
-//Get search offers
-router.get('/offers', async (req, res) => {
-  try {
-    const searchOffers = await JobOffer.find();
-    return res.status(200).json({ message: 'Offers found', searchOffers });
-  } catch (err) {
-    return res.status(404).json({ errorMessage: 'Offers not found' });
-  }
-});
-
-//Get offer
-router.get('/offers/:_id', isLoggedIn, async (req, res) => {
-  try {
-    const showOffer = await JobOffer.find(req.params._id);
-    return res.status(200).json({ message: 'Offer found', showOffer });
-  } catch (err) {
-    return res.status(404).json({ errorMessage: 'Offer not found' });
-  }
-});
 
 //Get favorites offers
 
