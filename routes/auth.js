@@ -37,12 +37,12 @@ router.get('/session', (req, res) => {
 
 // GET login/signup user page
 router.get('/login-user', isLoggedOut, async (req, res) => {
-  res.json('You have get login/singup user poage');
+  res.json('You are in login/singup user poage');
 });
 
 //GET login/singup company page
 router.get('/login-company', isLoggedOut, async (req, res) => {
-  res.json('Yopu have get login/signup company page');
+  res.json('You are in login/signup company page');
 });
 
 // POST create user
@@ -78,8 +78,13 @@ router.post('/signup/user', isLoggedOut, (req, res) => {
       .then((hashedPassword) => {
         // Create a user and save it in the database
         return User.create({
+          name,
+          lastName,
           email,
           password: hashedPassword,
+          birth,
+          province,
+          postalCode,
         });
       })
       .then((user) => {
@@ -155,8 +160,14 @@ router.post('/signup/company', isLoggedOut, (req, res) => {
       .then((hashedPassword) => {
         // Create a user and save it in the database
         return Company.create({
+          name,
           email,
           password: hashedPassword,
+          professionalSector,
+          cif,
+          address,
+          province,
+          companyUrl,
         });
       })
       .then((user) => {
@@ -272,6 +283,7 @@ router.post('/login/company', isLoggedOut, (req, res, next) => {
     });
 });
 
+// DELETE session
 router.delete('/logout', isLoggedIn, (req, res) => {
   Session.findByIdAndDelete(req.headers.authorization)
     .then(() => {

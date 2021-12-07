@@ -27,4 +27,4 @@ router.get('/:_id', isLoggedIn, async (req, res) => {
 module.exports = router;
 //Get favorites
 //Get applied offers
-//Get edit profile
+//Get edit profileº
