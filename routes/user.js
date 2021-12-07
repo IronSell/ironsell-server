@@ -64,7 +64,6 @@ router.get('/offers/:_id', isLoggedIn, async (req, res) => {
 
 
 //Get applied offers
-<<<<<<< HEAD
 
 
 //Get edit profile
@@ -79,6 +78,3 @@ router.get('/offers/:_id', isLoggedIn, async (req, res) => {
 
 
   module.exports = router;
-=======
-//Get edit profileº
->>>>>>> faadce98362aaf63ed56216a667080b1212d912a
