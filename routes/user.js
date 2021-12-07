@@ -1,4 +1,10 @@
 const router = require("express").Router();
+<<<<<<< HEAD
+const User = require("../models/User.model");
+
+const isLoggedIn = require('../middleware/isLoggedIn');
+const isLoggedOut = require('../middleware/isLoggedOut');
+=======
 
 //Models
 const User = require("../models/User.model");
@@ -22,3 +28,4 @@ router.get('/user/:_id', isLoggedIn, async (req, res) => {
 //Get favorites
 //Get applied offers
 //Get edit profile
+>>>>>>> 4cc02d569cc7db13305a266b5cd16890aed02dcd
