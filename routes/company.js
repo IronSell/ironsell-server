@@ -17,3 +17,5 @@ router.get('/company/:_id', isLoggedIn, async (req, res) => {
     return res.status(404).json({ errorMessage: 'Company page does not exist'})
   }
 })
+
+module.exports = router;
