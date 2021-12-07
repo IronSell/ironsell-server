@@ -43,36 +43,6 @@ router.post('/signup/user', isLoggedOut, (req, res) => {
   if (!name || !lastName || !email || !birth || !province || !postalCode) {
     return res.status(400).json({ errorMessage: 'Please fill all inputs.' });
   }
-  if (!lastName) {
-    return res
-      .status(400)
-      .json({ errorMessage: "Please provide your lastName." });
-  }
-  if (!email) {
-    return res
-      .status(400)
-      .json({ errorMessage: "Please provide your email." });
-  }
-  if (!birth) {
-    return res
-      .status(400)
-      .json({ errorMessage: "Please provide your birth." });
-
-  }
-  if (!province) {
-    return res
-      .status(400)
-      .json({ errorMessage: "Please provide your province." });
-
-  }
-  if (!postalCode) {
-    return res
-      .status(400)
-      .json({ errorMessage: "Please provide your postalCode." });
-
-  }
-
-  //   ! This use case is using a regular expression to control for special characters and min length
 
   // This use case is using a regular expression to control for special characters and min length
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
