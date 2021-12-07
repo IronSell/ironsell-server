@@ -42,32 +42,32 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .status(400)
       .json({ errorMessage: "Please provide your username." });
   }
-  if(!lastName) {
+  if (!lastName) {
     return res
-    .status(400)
-    .json({ errorMessage: "Please provide your lastName." });
+      .status(400)
+      .json({ errorMessage: "Please provide your lastName." });
   }
-  if(!email) {
+  if (!email) {
     return res
-    .status(400)
-    .json({ errorMessage: "Please provide your email." });
+      .status(400)
+      .json({ errorMessage: "Please provide your email." });
   }
-  if(!birth) {
+  if (!birth) {
     return res
-    .status(400)
-    .json({ errorMessage: "Please provide your birth." });
+      .status(400)
+      .json({ errorMessage: "Please provide your birth." });
 
   }
-  if(!province) {
+  if (!province) {
     return res
-    .status(400)
-    .json({ errorMessage: "Please provide your province." });
+      .status(400)
+      .json({ errorMessage: "Please provide your province." });
 
   }
-  if(!postalCode) {
+  if (!postalCode) {
     return res
-    .status(400)
-    .json({ errorMessage: "Please provide your postalCode." });
+      .status(400)
+      .json({ errorMessage: "Please provide your postalCode." });
 
   }
 
@@ -75,7 +75,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
   if (!regex.test(password)) {
-    return res.status(400).json( {
+    return res.status(400).json({
       errorMessage:
         "Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.",
     });
