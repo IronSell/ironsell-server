@@ -1,4 +1,3 @@
-// Hola Mundo
 const router = require('express').Router();
 
 // ℹ️ Handles password encryption
