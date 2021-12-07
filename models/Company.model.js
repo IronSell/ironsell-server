@@ -19,7 +19,7 @@ const companySchema = new Schema(
     },
     professionalSector: {
       type: String,
-      required: [true, 'Professioanl sector is required'],
+      required: [true, 'Professional sector is required'],
     },
     cif: {
       type: String,
