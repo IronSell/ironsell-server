@@ -19,6 +19,16 @@ router.get('/:_id', async (req, res) => {
   }
 });
 
+// POST search candidates
+router.get('/search', async (req, res) => {
+  try {
+    const searchCandidate = await User.find();
+    return res.status(200).json({ message: 'Search candidates'})
+  } catch (error) {
+    return res.status(404).json({ message: 'Search page not found'})
+  }
+})
+
 router.patch('/update/:_id', isLoggedIn, async (req, res) => {
   try {
     const editCompnay = await Company.findByIdAndUpdate(req.params._id);
