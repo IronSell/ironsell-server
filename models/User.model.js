@@ -40,20 +40,17 @@ const userSchema = new Schema(
     professionalExperience: {
       companyName: {
         type: String,
-        required: [true, 'Company name is required'],
       },
-      jobTitle: { type: String, required: [true, 'Job title is required'] },
+      jobTitle: { type: String },
       jobDescription: {
         type: String,
-        required: [true, 'Job description is required'],
       },
-      startDate: { type: Date, required: [true, 'Start date is required'] },
+      startDate: { type: Date },
       endDate: { type: Date },
       salary: { type: Number },
     },
     studiesLevel: {
       type: String,
-      required: [true, 'Studies level is required'],
     },
     savedJobs: {
       type: [Schema.Types.ObjectId],
