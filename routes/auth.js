@@ -70,7 +70,6 @@ router.post("/signup", isLoggedOut, (req, res) => {
     .json({ errorMessage: "Please provide your postalCode." });
 
   }
-  
 
   //   ! This use case is using a regular expression to control for special characters and min length
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
