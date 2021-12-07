@@ -9,14 +9,16 @@ const isLoggedIn = require('../middleware/isLoggedIn');
 const isLoggedOut = require('../middleware/isLoggedOut');
 
 //Get user profile
-router.get('/user/:_id', isLoggedIn, async (req, res) => {
+router.get('/:_id', isLoggedIn, async (req, res) => {
     try {
       const showUser = await User.find(req.params._id);
-      // res.status(200).json({ message:  })
+      return res.status(200).json({ message: 'Profile found', showCompany });
     } catch (err) {
       return res.status(404).json({ errorMessage: 'User profile does not exist'})
     }
   })
+
+  
   
   module.exports = router;
 //Get favorites
