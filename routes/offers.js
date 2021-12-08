@@ -7,7 +7,7 @@ const JobOffer = require('../models/JobOffer.model');
 const isLoggedIn = require('../middleware/isLoggedIn');
 const isLoggedOut = require('../middleware/isLoggedOut');
 
-// GET search offers
+// GET offers page
 router.get('/', async (req, res) => {
   try {
     const searchOffers = await JobOffer.find();
