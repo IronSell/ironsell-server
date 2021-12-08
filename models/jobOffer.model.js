@@ -28,6 +28,10 @@ const jobOfferSchema = new Schema(
       type: String,
       required: [true, 'Schedule is required'],
     },
+    candidates: {
+      type: [Schema.Types.ObjectId],
+      ref: 'User',
+    },
   },
   {
     timestamps: true,

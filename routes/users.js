@@ -18,12 +18,16 @@ router.get('/profile', isLoggedIn, async (req, res) => {
   }
 });
 
-
 //Get favorites offers
-
+// router.get('/favorites', isLoggedIn, async (req, res) => {
+//   try {
+//     const savedJobs = await User.
+//   } catch (err) {
+//     return res.status(404).json({message: 'Page is not found'})
+//   }
+// })
 
 //Get applied offers
-
 
 //UPDATE/EDIT profile
 router.patch('/edit/:_id', isLoggedIn, async (req, res) => {
@@ -32,6 +36,18 @@ router.patch('/edit/:_id', isLoggedIn, async (req, res) => {
     return res.status(200).json({ message: 'Profile edited', editProfile });
   } catch (err) {
     return res.status(400).json({ message: 'Cannot update the profile' });
+  }
+});
+
+// DELETE profile
+router.delete('/profile/:_id', isLoggedIn, async (req, res) => {
+  try {
+    const deletedProfile = await User.findByIdAndDelete(req.params._id);
+    return res
+      .status(200)
+      .json({ message: 'Profile deleted successfuly', deletedProfile });
+  } catch (err) {
+    return res.status(400).json({ messsage: 'Cannot delete profile' });
   }
 });
 
