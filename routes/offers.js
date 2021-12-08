@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 //Models
-const JobOffer = require("../model/JobOffer.model")
+const JobOffer = require("../models/JobOffer.model")
 
 //Middleware
 const isLoggedIn = require('../middleware/isLoggedIn');
