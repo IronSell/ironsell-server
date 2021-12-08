@@ -7,11 +7,13 @@ const Company = require('../models/Company.model');
 const isLoggedIn = require('../middleware/isLoggedIn');
 const isLoggedOut = require('../middleware/isLoggedOut');
 
-//GET search companies
-router.get('/search', async (req, res) => {
+//GET companies page
+router.get('/', async (req, res) => {
   try {
     const searchCompany = await Company.find();
-    return res.status(200).json({ message: 'Companies found', searchCompany });
+    return res
+      .status(200)
+      .json({ message: 'Companies found 👍', searchCompany });
   } catch (err) {
     return res.status(404).json({ errorMessage: 'Companies not found' });
   }
@@ -30,9 +32,22 @@ router.get('/:_id', async (req, res) => {
 });
 
 // UPDATE/EDIT company profile
-router.patch('/update/:_id', isLoggedIn, async (req, res) => {
+router.post('/update/:id', async (req, res) => {
+  const {
+    name,
+    email,
+    password,
+    professionalSector,
+    cif,
+    address,
+    companyDescription,
+    province,
+    jobOffers,
+    companyUrl,
+    companyLogo,
+  } = req.body;
   try {
-    const editCompany = await Company.findByIdAndUpdate(req.params._id);
+    const updateCompany = await Company.findByIdAndUpdate(req.params.id);
     return res.status(200).json({ message: 'Company edited', editCompany });
   } catch (err) {
     return res.status(400).json({ message: 'Cannot update the company' });

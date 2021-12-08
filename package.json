@@ -16,8 +16,7 @@
     "express-session": "^1.17.2",
     "mongoose": "^6.0.14",
     "mongoose-type-url": "^2.1.0",
-    "morgan": "^1.10.0",
-    "request": "^2.88.2"
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
