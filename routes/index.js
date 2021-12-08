@@ -3,7 +3,7 @@ const authRoutes = require('./auth');
 const companyRoutes = require('./companies');
 const candidatesRoutes = require('./candidates');
 const usersRoutes = require('./users')
-const offersRoutes = require('/offers')
+const offersRoutes = require('./offers')
 
 /* GET home page */
 router.get('/', (req, res, next) => {
