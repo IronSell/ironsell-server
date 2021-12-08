@@ -7,7 +7,7 @@ const JobOffer = require('../models/JobOffer.model');
 const isLoggedIn = require('../middleware/isLoggedIn');
 const isLoggedOut = require('../middleware/isLoggedOut');
 
-//GET search offers
+// GET search offers
 router.get('/', async (req, res) => {
   try {
     const searchOffers = await JobOffer.find();
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-//GET offer
+// GET offer
 router.get('/:_id', isLoggedIn, async (req, res) => {
   try {
     const showOffer = await JobOffer.find(req.params._id);
@@ -27,7 +27,21 @@ router.get('/:_id', isLoggedIn, async (req, res) => {
   }
 });
 
-//DELETE offer
+// UPDATE/EDIT job offer
+router.patch('/update/:_id', isLoggedIn, async (req, res) => {
+  try {
+    const updatedJobOffer = await JobOffer.findByIdAndUpdate(req.params._id);
+    return res
+      .status(200)
+      .json({ message: 'Offer update successfuly', updatedJobOffer });
+  } catch (err) {
+    return res
+      .status(400)
+      .json({ message: 'Cannot update job offer', updatedJobOffer });
+  }
+});
+
+// DELETE offer
 router.delete('/delete/:_id', isLoggedIn, async (req, res) => {
   try {
     const deletedOffer = await JobOffer.find(req.params._id);

@@ -27,9 +27,9 @@ router.get('/profile', isLoggedIn, async (req, res) => {
 //   }
 // })
 
-//Get applied offers
+// Get applied offers
 
-//UPDATE/EDIT profile
+// UPDATE/EDIT profile
 router.patch('/edit/:_id', isLoggedIn, async (req, res) => {
   try {
     const editProfile = await User.findByIdAndUpdate(req.params._id);

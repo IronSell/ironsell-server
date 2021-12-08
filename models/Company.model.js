@@ -37,16 +37,14 @@ const companySchema = new Schema(
       type: String,
       required: [true, 'Address is required'],
     },
+    companyDescription: String,
     province: {
       type: String,
       required: [true, 'Province is required'],
     },
-    jobOffers: {
-      type: [Schema.Types.ObjectId],
-      ref: 'JobOffer',
-    },
+    jobOffers: [{ type: Schema.Types.ObjectId, ref: 'JobOffer' }],
     companyUrl: { type: Schema.Types.Url },
-    companyLogo: { type: String, default: '' },
+    companyLogo: { type: String, default: '../images/defaultCompanyLogo.png' },
   },
   {
     timestamps: true,

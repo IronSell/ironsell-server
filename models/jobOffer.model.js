@@ -7,13 +7,11 @@ const jobOfferSchema = new Schema(
       required: [true, 'Job title is required'],
     },
     experienceYears: {
-      type: Number,
-      required: [true, 'Experience years is required'],
+      type: String,
+      required: [true, 'Experience years are required'],
     },
     salary: {
-      type: Number,
-      maxlength: 7,
-      max: 999.999,
+      type: String,
       required: [true, 'Salary is required'],
     },
     province: {
@@ -24,14 +22,15 @@ const jobOfferSchema = new Schema(
       type: String,
       required: [true, 'Description is required'],
     },
+    requirements: {
+      type: String,
+      required: [true, 'Requirements are required'],
+    },
     schedule: {
       type: String,
       required: [true, 'Schedule is required'],
     },
-    candidates: {
-      type: [Schema.Types.ObjectId],
-      ref: 'User',
-    },
+    candidates: [{ type: [Schema.Types.ObjectId], ref: 'User' }],
   },
   {
     timestamps: true,
