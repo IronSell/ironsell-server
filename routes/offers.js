@@ -33,7 +33,7 @@ router.patch('/update/:_id', isLoggedIn, async (req, res) => {
     const updatedJobOffer = await JobOffer.findByIdAndUpdate(req.params._id);
     return res
       .status(200)
-      .json({ message: 'Offer update successfuly', updatedJobOffer });
+      .json({ message: 'Offer updated successfuly', updatedJobOffer });
   } catch (err) {
     return res
       .status(400)

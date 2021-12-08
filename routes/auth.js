@@ -16,6 +16,7 @@ const Company = require('../models/Company.model');
 const isLoggedOut = require('../middleware/isLoggedOut');
 const isLoggedIn = require('../middleware/isLoggedIn');
 
+// GET session
 router.get('/session', (req, res) => {
   // we dont want to throw an error, and just maintain the user as null
   if (!req.headers.authorization) {
@@ -36,16 +37,16 @@ router.get('/session', (req, res) => {
 });
 
 // GET login/signup user page
-router.get('/login-user', isLoggedOut, async (req, res) => {
+router.get('/login/user', isLoggedOut, async (req, res) => {
   res.json('You are in login/singup user poage');
 });
 
 //GET login/singup company page
-router.get('/login-company', isLoggedOut, async (req, res) => {
+router.get('/login/company', isLoggedOut, async (req, res) => {
   res.json('You are in login/signup company page');
 });
 
-// POST create user
+// POST signup user
 router.post('/signup/user', isLoggedOut, (req, res) => {
   const { name, lastName, password, email, birth, province, postalCode } =
     req.body;
@@ -54,7 +55,6 @@ router.post('/signup/user', isLoggedOut, (req, res) => {
     return res.status(400).json({ errorMessage: 'Please fill all inputs.' });
   }
 
-  // This use case is using a regular expression to control for special characters and min length
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
   if (!regex.test(password)) {
@@ -110,7 +110,7 @@ router.post('/signup/user', isLoggedOut, (req, res) => {
   });
 });
 
-// POST create company
+// POST signup company
 router.post('/signup/company', isLoggedOut, (req, res) => {
   const {
     name,
@@ -197,30 +197,26 @@ router.post('/signup/company', isLoggedOut, (req, res) => {
 router.post('/login/user', isLoggedOut, (req, res, next) => {
   const { email, password } = req.body;
 
-  if (!email) {
-    return res.status(400).json({ errorMessage: 'Please provide your email.' });
-  }
-
-  // Here we use the same logic as above
-  // - either length based parameters or we check the strength of a password
-  if (password.length < 8) {
-    return res.status(400).json({
-      errorMessage: 'Your password needs to be at least 8 characters long.',
-    });
+  if (!email || !password) {
+    return res.status(400).json({ errorMessage: 'Please fill all inputs.' });
   }
 
   // Search the database for a user with the username submitted in the form
   User.findOne({ email })
     .then((user) => {
-      // If the user isn't found, send the message that user provided wrong credentials
+      // If the user isn't found, send the message that user provided Incorrect email or password
       if (!user) {
-        return res.status(400).json({ errorMessage: 'Wrong credentials.' });
+        return res
+          .status(400)
+          .json({ errorMessage: 'Incorrect email or password.' });
       }
 
       // If user is found based on the username, check if the in putted password matches the one saved in the database
       bcrypt.compare(password, user.password).then((isSamePassword) => {
         if (!isSamePassword) {
-          return res.status(400).json({ errorMessage: 'Wrong credentials.' });
+          return res
+            .status(400)
+            .json({ errorMessage: 'Incorrect email or password.' });
         }
         Session.create({ user: user._id, createdAt: Date.now() }).then(
           (session) => {
@@ -242,30 +238,26 @@ router.post('/login/user', isLoggedOut, (req, res, next) => {
 router.post('/login/company', isLoggedOut, (req, res, next) => {
   const { email, password } = req.body;
 
-  if (!email) {
-    return res.status(400).json({ errorMessage: 'Please provide your email.' });
-  }
-
-  // Here we use the same logic as above
-  // - either length based parameters or we check the strength of a password
-  if (password.length < 8) {
-    return res.status(400).json({
-      errorMessage: 'Your password needs to be at least 8 characters long.',
-    });
+  if (!email || !password) {
+    return res.status(400).json({ errorMessage: 'Please fill all inputs.' });
   }
 
   // Search the database for a user with the username submitted in the form
   Company.findOne({ email })
     .then((user) => {
-      // If the user isn't found, send the message that user provided wrong credentials
+      // If the user isn't found, send the message that user provided Incorrect email or password
       if (!user) {
-        return res.status(400).json({ errorMessage: 'Wrong credentials.' });
+        return res
+          .status(400)
+          .json({ errorMessage: 'Incorrect email or password.' });
       }
 
       // If user is found based on the username, check if the in putted password matches the one saved in the database
       bcrypt.compare(password, user.password).then((isSamePassword) => {
         if (!isSamePassword) {
-          return res.status(400).json({ errorMessage: 'Wrong credentials.' });
+          return res
+            .status(400)
+            .json({ errorMessage: 'Incorrect email or password.' });
         }
         Session.create({ user: user._id, createdAt: Date.now() }).then(
           (session) => {
