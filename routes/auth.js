@@ -48,10 +48,10 @@ router.get('/login/company', isLoggedOut, async (req, res) => {
 
 // POST signup user
 router.post('/signup/user', isLoggedOut, (req, res) => {
-  const { name, lastName, password, email, birth, province, postalCode } =
+  const { name, lastName, password, email, birth, telephoneNumber, province, postalCode } =
     req.body;
 
-  if (!name || !lastName || !email || !birth || !province || !postalCode) {
+  if (!name || !lastName || !email || !birth || !telephoneNumber || !province || !postalCode) {
     return res.status(400).json({ errorMessage: 'Please fill all inputs.' });
   }
 
@@ -83,6 +83,7 @@ router.post('/signup/user', isLoggedOut, (req, res) => {
           email,
           password: hashedPassword,
           birth,
+          telephoneNumber,
           province,
           postalCode,
         });

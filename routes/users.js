@@ -4,29 +4,22 @@ const router = require('express').Router();
 const User = require('../models/User.model');
 const Company = require('../models/Company.model');
 const JobOffer = require('../models/JobOffer.model');
+const Session = require('../models/Session.model');
 
 //Middleware
 const isLoggedIn = require('../middleware/isLoggedIn');
 const isLoggedOut = require('../middleware/isLoggedOut');
 
 //Get user profile
-router.get('/profile/:_id', isLoggedIn, async (req, res) => {
+router.get('/profile/session', isLoggedIn, async (req, res) => {
   try {
-    const showUser = await User.findById(raq.params._id);
+    const sessionId = await Session.find(user);
+    const showUser = await User.findById(sessionId);
     return res.status(200).json({ message: 'Profile found', showUser });
   } catch (err) {
     return res.status(404).json({ errorMessage: 'This user does not' });
   }
 });
-
-//Get favorites offers
-// router.get('/favorites', isLoggedIn, async (req, res) => {
-//   try {
-//     const savedJobs = await User.
-//   } catch (err) {
-//     return res.status(404).json({message: 'Page is not found'})
-//   }
-// })
 
 // Get applied offers
 
