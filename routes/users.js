@@ -10,8 +10,9 @@ const isLoggedIn = require('../middleware/isLoggedIn');
 const isLoggedOut = require('../middleware/isLoggedOut');
 
 //Get user profile
-router.get('/profile', isLoggedIn, async (req, res) => {
+router.get('/profile/:_id', isLoggedIn, async (req, res) => {
   try {
+    const showUser = await User.findById(raq.params._id);
     return res.status(200).json({ message: 'Profile found', showUser });
   } catch (err) {
     return res.status(404).json({ errorMessage: 'This user does not' });
