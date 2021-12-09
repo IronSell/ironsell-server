@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const fileUploader = require('../config/cloudinary.config');
 
 // Models
 const Company = require('../models/Company.model');
@@ -22,7 +23,7 @@ router.get('/', async (req, res) => {
 // GET company page
 router.get('/:_id', async (req, res) => {
   try {
-    const showCompany = await Company.find(req.params._id);
+    const showCompany = await Company.findById(req.params._id);
     return res.status(200).json({ message: 'Company found', showCompany });
   } catch (err) {
     return res

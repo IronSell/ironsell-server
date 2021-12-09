@@ -12,8 +12,10 @@ const storage = new CloudinaryStorage({
   // cloudinary: cloudinary,
   cloudinary,
   params: {
-    allowed_formats: ['jpg', 'png'],
+    allowed_formats: ['jpg', 'png', 'gif', 'pdf'],
     folder: 'ironhack-project3',
-    resource_type: 'raw'
-  }
+    resource_type: 'raw',
+  },
 });
+
+module.exports = multer({ storage });
