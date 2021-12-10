@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-
 require('mongoose-type-url');
 
 const userSchema = new Schema(
@@ -34,7 +33,8 @@ const userSchema = new Schema(
     province: { type: String, required: [true, 'Province is required'] },
     profilePicture: {
       type: String,
-      default: '',
+      default:
+        'https://res.cloudinary.com/dafy78pru/image/upload/v1639148882/default-candidate-image_yzvjdg.png',
     },
     professionalProfiles: [{ type: Schema.Types.Url }],
     professionalExperience: {
@@ -63,6 +63,10 @@ const userSchema = new Schema(
     favoriteCompanies: {
       type: [Schema.Types.ObjectId],
       ref: 'Company',
+    },
+    isCompany: {
+      type: Boolean,
+      default: false,
     },
   },
   {

@@ -48,6 +48,10 @@ const companySchema = new Schema(
       default:
         'https://res.cloudinary.com/dafy78pru/image/upload/v1639090003/default-company-logo_tqgr0i.png ',
     },
+    isCompany: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,
