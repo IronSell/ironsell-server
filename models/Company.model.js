@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-
 require('mongoose-type-url');
 
 const companySchema = new Schema(
@@ -44,7 +43,11 @@ const companySchema = new Schema(
     },
     jobOffers: [{ type: Schema.Types.ObjectId, ref: 'JobOffer' }],
     companyUrl: { type: Schema.Types.Url },
-    companyLogo: { type: String, default: '../images/defaultCompanyLogo.png' },
+    companyLogo: {
+      type: String,
+      default:
+        'https://res.cloudinary.com/dafy78pru/image/upload/v1639090003/default-company-logo_tqgr0i.png ',
+    },
   },
   {
     timestamps: true,
