@@ -10,7 +10,7 @@ const isLoggedOut = require('../middleware/isLoggedOut');
 // GET offers page
 router.get('/', async (req, res) => {
   try {
-    const searchOffers = await JobOffer.find();
+    const searchOffers = await JobOffer.findById();
     return res.status(200).json({ message: 'Offers found', searchOffers });
   } catch (err) {
     return res.status(404).json({ errorMessage: 'Offers not found' });
