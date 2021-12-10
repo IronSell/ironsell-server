@@ -1,0 +1,21 @@
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const multer = require('multer');
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
+});
+
+const storage = new CloudinaryStorage({
+  // cloudinary: cloudinary,
+  cloudinary,
+  params: {
+    allowed_formats: ['jpg', 'png', 'gif', 'pdf'],
+    folder: 'ironhack-project3',
+    resource_type: 'raw',
+  },
+});
+
+module.exports = multer({ storage });
