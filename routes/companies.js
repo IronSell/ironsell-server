@@ -33,7 +33,7 @@ router.get('/:_id', async (req, res) => {
 });
 
 // UPDATE/EDIT company profile
-router.post('/update/:id', async (req, res) => {
+router.patch('/:id', isLoggedIn, async (req, res) => {
   const {
     name,
     email,

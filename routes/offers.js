@@ -17,10 +17,10 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET offer
-router.get('/:_id', isLoggedIn, async (req, res) => {
+// GET offer page
+router.get('/:_id', async (req, res) => {
   try {
-    const showOffer = await JobOffer.find(req.params._id);
+    const showOffer = await JobOffer.findById(req.params._id);
     return res.status(200).json({ message: 'Offer found', showOffer });
   } catch (err) {
     return res.status(404).json({ errorMessage: 'Offer not found' });
@@ -28,7 +28,7 @@ router.get('/:_id', isLoggedIn, async (req, res) => {
 });
 
 // UPDATE/EDIT job offer
-router.patch('/update/:_id', isLoggedIn, async (req, res) => {
+router.patch('/:_id', isLoggedIn, async (req, res) => {
   try {
     const updatedJobOffer = await JobOffer.findByIdAndUpdate(req.params._id);
     return res
