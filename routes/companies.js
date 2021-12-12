@@ -32,6 +32,18 @@ router.get('/:_id', async (req, res) => {
   }
 });
 
+// GET company profile
+router.get('/profile/:_id', isLoggedIn, async (req, res) => {
+  try {
+    const showCompany = await Company.findById(req.params._id);
+    return res.status(200).json({ message: 'Company found', showCompany });
+  } catch (err) {
+    return res
+      .status(404)
+      .json({ errorMessage: 'Company page does not exist' });
+  }
+});
+
 // UPDATE/EDIT company profile
 router.patch('/:id', isLoggedIn, async (req, res) => {
   const {
