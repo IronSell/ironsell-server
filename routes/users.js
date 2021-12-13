@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const fileUploader = require('../config/cloudinary.config');
 
 //Models
 const User = require('../models/User.model');
@@ -21,18 +22,59 @@ router.get('/profile/:_id', isLoggedIn, async (req, res) => {
 
 // Get applied offers
 
-// UPDATE/EDIT profile
-router.patch('/:_id', isLoggedIn, async (req, res) => { // quitar /edit
-  try {
-    const editProfile = await User.findByIdAndUpdate(req.params._id);
-    return res.status(200).json({ message: 'Profile edited', editProfile });
-  } catch (err) {
-    return res.status(400).json({ message: 'Cannot update the profile' });
+// UPDATE/EDIT candidate profile
+router.patch(
+  '/:_id',
+  fileUploader.single('profile-picture'),
+  isLoggedIn,
+  async (req, res) => {
+    const {
+      name,
+      lastName,
+      email,
+      password,
+      birth,
+      telephoneNumber,
+      postalCode,
+      province,
+      profilePicture,
+      professionalProfiles,
+      professionalExperience,
+      studiesLevel,
+    } = req.body;
+
+    let imageUrl;
+    req.file ? (imageUrl = req.file.path) : (imageUrl = profilePicture);
+    
+    try {
+      const editProfile = await User.findByIdAndUpdate(
+        req.params._id,
+        {
+          name,
+          lastName,
+          email,
+          password,
+          birth,
+          telephoneNumber,
+          postalCode,
+          province,
+          profilePicture,
+          professionalProfiles,
+          professionalExperience,
+          studiesLevel,
+        },
+        { new: true }
+      );
+      return res.status(200).json({ message: 'Profile edited', editProfile });
+    } catch (err) {
+      return res.status(400).json({ message: 'Cannot update the profile' });
+    }
   }
-});
+);
 
 // DELETE profile
-router.delete('/profile/:_id', isLoggedIn, async (req, res) => { // quitar /delete
+router.delete('/profile/:_id', isLoggedIn, async (req, res) => {
+  // quitar /delete
   try {
     const deletedProfile = await User.findByIdAndDelete(req.params._id);
     return res

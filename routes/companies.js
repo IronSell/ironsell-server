@@ -45,27 +45,51 @@ router.get('/profile/:_id', isLoggedIn, async (req, res) => {
 });
 
 // UPDATE/EDIT company profile
-router.patch('/:id', isLoggedIn, async (req, res) => {
-  const {
-    name,
-    email,
-    password,
-    professionalSector,
-    cif,
-    address,
-    companyDescription,
-    province,
-    jobOffers,
-    companyUrl,
-    companyLogo,
-  } = req.body;
-  try {
-    const updateCompany = await Company.findByIdAndUpdate(req.params.id);
-    return res.status(200).json({ message: 'Company edited', editCompany });
-  } catch (err) {
-    return res.status(400).json({ message: 'Cannot update the company' });
+router.patch(
+  '/:id',
+  fileUploader.single('company-logo'),
+  isLoggedIn,
+  async (req, res) => {
+    const {
+      name,
+      email,
+      password,
+      professionalSector,
+      cif,
+      address,
+      companyDescription,
+      province,
+      jobOffers,
+      companyUrl,
+      companyLogo,
+    } = req.body;
+
+    let imageUrl;
+    req.file ? (imageUrl = req.file.path) : (imageUrl = companyLogo);
+
+    try {
+      const updateCompany = await Company.findByIdAndUpdate(
+        req.params.id,
+        {
+          name,
+          email,
+          password,
+          professionalSector,
+          cif,
+          address,
+          companyDescription,
+          province,
+          companyUrl,
+          companyLogo,
+        },
+        { new: true }
+      );
+      return res.status(200).json({ message: 'Company edited', editCompany });
+    } catch (err) {
+      return res.status(400).json({ message: 'Cannot update the company' });
+    }
   }
-});
+);
 
 //DELETE company profile
 router.delete('/delete/:_id', isLoggedIn, async (req, res) => {
