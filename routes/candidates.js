@@ -22,7 +22,7 @@ router.get('/', isLoggedIn, async (req, res) => {
 // GET candidate profile
 router.get('/:_id', isLoggedIn, async (req, res) => {
   try {
-    const showUser = await User.find(req.params._id);
+    const showUser = await User.findById(req.params._id);
     return res.status(200).json({ message: 'Candidate found', showUser });
   } catch (err) {
     return res.status(404).json({ errorMessage: 'This user does not' });
