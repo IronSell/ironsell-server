@@ -10,10 +10,10 @@ const isLoggedIn = require('../middleware/isLoggedIn');
 // GET candidates page
 router.get('/', isLoggedIn, async (req, res) => {
   try {
-    const showCandidates = await User.find();
+    const getCandidates = await User.find();
     return res
       .status(200)
-      .json({ message: 'Candidates found 👍', showCandidates });
+      .json({ message: 'Candidates found 👍', getCandidates });
   } catch (err) {
     return res.status(404).json({ message: 'Page not found' });
   }

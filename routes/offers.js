@@ -27,6 +27,17 @@ router.get('/:_id', async (req, res) => {
   }
 });
 
+// GET searchbar
+router.get('/:jobTitle', async (req, res) => {
+  try {
+    const x = await JobOffer.find(req.body.jobTitle, {
+      input: { $regex: /pattern/, $options: 'y' },
+    });
+  } catch (err) {
+    return res.status(403).json({ errorMessage: 'Offer not found' });
+  }
+});
+
 // UPDATE/EDIT job offer
 router.patch('/:_id', isLoggedIn, async (req, res) => {
   try {
