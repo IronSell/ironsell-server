@@ -3,8 +3,6 @@ const fileUploader = require('../config/cloudinary.config');
 
 //Models
 const User = require('../models/User.model');
-// const Company = require('../models/Company.model');
-// const JobOffer = require('../models/JobOffer.model');
 
 //Middleware
 const isLoggedIn = require('../middleware/isLoggedIn');

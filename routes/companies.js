@@ -5,9 +5,8 @@ const fileUploader = require('../config/cloudinary.config');
 const Company = require('../models/Company.model');
 
 //Middleware
-const isLoggedIn = require('../middleware/isLoggedIn');
 const isCompanyLoggedIn = require('../middleware/isCompanyLoggedIn');
-const isLoggedOut = require('../middleware/isLoggedOut');
+const isLoggedIn = require('../middleware/isLoggedIn');
 
 //GET companies page
 router.get('/', async (req, res) => {
