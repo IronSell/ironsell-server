@@ -26,7 +26,7 @@ const userSchema = new Schema(
       required: [true, 'Number is required'],
     },
     postalCode: {
-      type: Number,
+      type: String,
       maxlength: 5,
       required: [true, 'Postal code is required'],
     },
@@ -44,7 +44,7 @@ const userSchema = new Schema(
       facebook: String,
       web: String,
     },
-    professionalExperience: {
+    professionalExperience: [{
       companyName: {
         type: String,
       },
@@ -55,7 +55,7 @@ const userSchema = new Schema(
       startDate: { type: Date },
       endDate: { type: Date },
       salary: { type: Number },
-    },
+    }],
     studiesLevel: {
       type: String,
     },

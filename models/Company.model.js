@@ -36,7 +36,11 @@ const companySchema = new Schema(
       type: String,
       required: [true, 'Address is required'],
     },
-    companyDescription: String,
+    companyDescription: {
+      type: String,
+      default:
+        'Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc metus odio, molestie ut leo at, sollicitudin auctor mauris. Nunc cursus faucibus enim ut pretium. Sed pulvinar ipsum sed commodo porttitor. Praesent commodo a sapien at accumsan. Nam nisi magna, consectetur nec ex non, facilisis tempor tortor. Nam non urna elit. Curabitur laoreet, nibh eget luctus iaculis, ligula sapien pulvinar nisl, sed pharetra libero libero ac metus. Cras mattis finibus nulla ac blandit. Vestibulum nec velit varius, mattis nisl sit amet, pulvinar quam. Fusce vitae scelerisque nulla. Fusce lacinia nec elit eu congue. Vivamus blandit ultricies turpis, nec aliquet neque congue vel. Quisque interdum tincidunt rhoncus.',
+    },
     province: {
       type: String,
       required: [true, 'Province is required'],

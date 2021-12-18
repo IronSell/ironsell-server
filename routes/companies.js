@@ -6,6 +6,7 @@ const Company = require('../models/Company.model');
 
 //Middleware
 const isLoggedIn = require('../middleware/isLoggedIn');
+const isCompanyLoggedIn = require('../middleware/isCompanyLoggedIn');
 const isLoggedOut = require('../middleware/isLoggedOut');
 
 //GET companies page
@@ -33,7 +34,7 @@ router.get('/:_id', async (req, res) => {
 });
 
 // GET company profile
-router.get('/profile/:_id', isLoggedIn, async (req, res) => {
+router.get('/profile/:_id', isCompanyLoggedIn, async (req, res) => {
   try {
     const showCompany = await Company.findById(req.params._id);
     return res.status(200).json({ message: 'Company found', showCompany });
@@ -48,7 +49,7 @@ router.get('/profile/:_id', isLoggedIn, async (req, res) => {
 router.patch(
   '/:id',
   fileUploader.single('company-logo'),
-  isLoggedIn,
+  isCompanyLoggedIn,
   async (req, res) => {
     const {
       name,
@@ -92,7 +93,7 @@ router.patch(
 );
 
 //DELETE company profile
-router.delete('/delete/:_id', isLoggedIn, async (req, res) => {
+router.delete('/delete/:_id', isCompanyLoggedIn, async (req, res) => {
   try {
     const deletedCompany = await Company.findByIdAndDelete(req.params._id);
     return res.status(200).json({ message: 'Company deleted', deletedCompany });

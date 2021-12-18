@@ -10,13 +10,15 @@ const saltRounds = 10;
 // Require the User model in order to interact with the database
 const User = require('../models/User.model');
 const Session = require('../models/Session.model');
+const SessionCompany = require('../models/SessionCompany.model');
 const Company = require('../models/Company.model');
 
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require('../middleware/isLoggedOut');
 const isLoggedIn = require('../middleware/isLoggedIn');
+const isCompanyLoggedIn = require('../middleware/isCompanyLoggedIn');
 
-// GET session
+// GET candidate session
 router.get('/session', (req, res) => {
   // we dont want to throw an error, and just maintain the user as null
   if (!req.headers.authorization) {
@@ -27,6 +29,26 @@ router.get('/session', (req, res) => {
   const accessToken = req.headers.authorization;
 
   Session.findById(accessToken)
+    .populate('user')
+    .then((session) => {
+      if (!session) {
+        return res.status(404).json({ errorMessage: 'Session does not exist' });
+      }
+      return res.status(200).json(session);
+    });
+});
+
+// GET candidate session
+router.get('/session-company', (req, res) => {
+  // we dont want to throw an error, and just maintain the user as null
+  if (!req.headers.authorization) {
+    return res.json(null);
+  }
+
+  // accessToken is being sent on every request in the headers
+  const accessToken = req.headers.authorization;
+
+  SessionCompany.findById(accessToken)
     .populate('user')
     .then((session) => {
       if (!session) {
@@ -48,10 +70,26 @@ router.get('/login/company', isLoggedOut, async (req, res) => {
 
 // POST signup user
 router.post('/signup/user', isLoggedOut, (req, res) => {
-  const { name, lastName, password, email, birth, telephoneNumber, province, postalCode } =
-    req.body;
+  const {
+    name,
+    lastName,
+    password,
+    email,
+    birth,
+    telephoneNumber,
+    province,
+    postalCode,
+  } = req.body;
 
-  if (!name || !lastName || !email || !birth || !telephoneNumber || !province || !postalCode) {
+  if (
+    !name ||
+    !lastName ||
+    !email ||
+    !birth ||
+    !telephoneNumber ||
+    !province ||
+    !postalCode
+  ) {
     return res.status(400).json({ errorMessage: 'Please fill all inputs.' });
   }
 
@@ -172,7 +210,7 @@ router.post('/signup/company', isLoggedOut, (req, res) => {
         });
       })
       .then((user) => {
-        Session.create({
+        SessionCompany.create({
           user: user._id,
           createdAt: Date.now(),
         }).then((session) => {
@@ -260,7 +298,7 @@ router.post('/login/company', isLoggedOut, (req, res, next) => {
             .status(400)
             .json({ errorMessage: 'Incorrect email or password.' });
         }
-        Session.create({ user: user._id, createdAt: Date.now() }).then(
+        SessionCompany.create({ user: user._id, createdAt: Date.now() }).then(
           (session) => {
             return res.json({ user, accessToken: session._id });
           }
@@ -276,9 +314,22 @@ router.post('/login/company', isLoggedOut, (req, res, next) => {
     });
 });
 
-// DELETE session
+// DELETE candidate session
 router.delete('/logout', isLoggedIn, (req, res) => {
   Session.findByIdAndDelete(req.headers.authorization)
+    .then(() => {
+      res.status(200).json({ message: 'User was logged out' });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ errorMessage: err.message });
+    });
+});
+
+// DELETE company session
+router.delete('/logout/company', isCompanyLoggedIn, (req, res) => {
+  console.log('delete company');
+  SessionCompany.findByIdAndDelete(req.headers.authorization)
     .then(() => {
       res.status(200).json({ message: 'User was logged out' });
     })
