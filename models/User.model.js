@@ -36,9 +36,9 @@ const userSchema = new Schema(
       default:
         'https://res.cloudinary.com/dafy78pru/image/upload/v1639148882/default-candidate-image_yzvjdg.png',
     },
-    profession: { type: String, required: [true, 'Province is required'] },
+    profession: String,
     professionalProfiles: [{ type: Schema.Types.Url }],
-    professionalExperience: {
+    professionalExperience: [{
       companyName: {
         type: String,
       },
@@ -49,7 +49,7 @@ const userSchema = new Schema(
       startDate: { type: Date },
       endDate: { type: Date },
       salary: { type: Number },
-    },
+    }],
     studiesLevel: {
       type: String,
     },
