@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 // GET company page
 router.get('/:_id', async (req, res) => {
   try {
-    const showCompany = await Company.findById(req.params._id);
+    const showCompany = await Company.findById(req.params._id).populate('jobOffers');
     return res.status(200).json({ message: 'Company found', showCompany });
   } catch (err) {
     return res
