@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 //Models
 const JobOffer = require('../models/JobOffer.model');
-
+const User = require('../models/User.model')
 //Middleware
 const isLoggedIn = require('../middleware/isLoggedIn');
 const isLoggedOut = require('../middleware/isLoggedOut');
@@ -61,5 +61,20 @@ router.delete('/delete/:_id', isLoggedIn, async (req, res) => {
     return res.status(404).json({ errorMessage: 'Cannot delete the offer' });
   }
 });
+
+// Add to saved jobs
+router.patch('/favorites/:user_id/company/:job_id', isLoggedIn, async (req, res) => {
+
+  const userId = req.params.user_id
+  const jobId = req.params.job_id
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(userId, { $push: { "savedJobs": jobId } }, { safe: true, upsert: true, new: true })
+    return res.status(200).json({ message: 'Offer add to favorites', updatedUser })
+  } catch (err) {
+    return res.status(404).json({ errorMessage: 'Cannot add to favorites' });
+  }
+
+})
 
 module.exports = router;
