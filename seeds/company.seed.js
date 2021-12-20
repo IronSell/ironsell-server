@@ -62,7 +62,7 @@ const companies = [
     province: 'Madrid',
     companyUrl:'http://www.prosegur.es',
     companyDescription: 'More than 175,000 employees worldwide.presence in 5 continents.we offer comprehensive security solutions based on innovation, operational excellence and proximity to customers.we promote the inclusion of people with disabilities and multigenerational coexistence, thus betting on the formation of diverse teams, whose differences enrich our company and its professionals.',
-    companyLogo:'https://multimedia.infojobs.net/api/v1/tenants/c7e2b9c1-8480-43b0-ad9e-000c17aa2cbb/domains/718302b6-5343-43d3-a8a3-829dc3da0893/buckets/6f3ab1cc-5920-4f4e-b131-46a4587a0e1f/images/03/039821a7-5c0e-48eb-85b1-09a85e02d029?jwt=eyJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDAyNjQyMDQsImV4cCI6MTczNjc2NzI0NSwicnFzIjoiR0VUXFwvdGVuYW50cy9jN2UyYjljMS04NDgwLTQzYjAtYWQ5ZS0wMDBjMTdhYTJjYmIvZG9tYWlucy83MTgzMDJiNi01MzQzLTQzZDMtYThhMy04MjlkYzNkYTA4OTMvYnVja2V0cy82ZjNhYjFjYy01OTIwLTRmNGUtYjEzMS00NmE0NTg3YTBlMWYvaW1hZ2VzLzAzLzAzOTgyMWE3LTVjMGUtNDhlYi04NWIxLTA5YTg1ZTAyZDAyOSIsIm1ldGFkYXRhIjp7InJ1bGUiOnsidmVyc2lvbiI6IjIwMTYtMTAiLCJhY3Rpb25zIjpbXX19fQ.FMQny4sjx8hYspBIyyyKy3h06mpE3RSnKWUTthZhsd1tHTc9tPznlKWHkaFUlNRQ3Bv-EuqP5LUL9Sq1NeojEz5gecfpXVmaMUdSeDMmUnNz62YKMJJYtqkI-cnozEZgsvQTkoZxrbuTIAUYXnBMAtGIyRVQVsjm-OucIrVTFjlNJTmCq9GzgpSLyae5COcyErQ9J-E48JjMDFYjBLRD9qlDTbdPRQ7VsDlPePt2vmVWoRSUAerz7pKmhfiMzMK7FDWI87lKIDxC_IcZk7bBUhsv6VmrfT_1JnnLzZylMlDOIv5VixdqTYUpo2GsjmJvEIlVwU7H7FKqSuCtZDVXOg&AccessKeyId=d724d9a53d95a810',
+    companyLogo:'https://www.gmkfreelogos.com/logos/P/img/Prosegur-2.gif',
   },
   {
     name: 'Toptal',
@@ -86,7 +86,7 @@ const companies = [
     province: 'Madrid',
     companyUrl:'http://www.mapfre.es',
     companyDescription:'At MAPFRE we are committed to business development, which is why we aim to incorporate mediators into our commercial structure by giving them the opportunity to be successful entrepreneurs',
-    companyLogo:'https://multimedia.infojobs.net/api/v1/tenants/c7e2b9c1-8480-43b0-ad9e-000c17aa2cbb/domains/718302b6-5343-43d3-a8a3-829dc3da0893/buckets/6f3ab1cc-5920-4f4e-b131-46a4587a0e1f/images/10/1059a02a-e4de-498a-97c2-b7acab25f6b5?jwt=eyJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1NTA3NTUwODQsImV4cCI6MTczNjc2NzI0NSwicnFzIjoiR0VUXFwvdGVuYW50cy9jN2UyYjljMS04NDgwLTQzYjAtYWQ5ZS0wMDBjMTdhYTJjYmIvZG9tYWlucy83MTgzMDJiNi01MzQzLTQzZDMtYThhMy04MjlkYzNkYTA4OTMvYnVja2V0cy82ZjNhYjFjYy01OTIwLTRmNGUtYjEzMS00NmE0NTg3YTBlMWYvaW1hZ2VzLzEwLzEwNTlhMDJhLWU0ZGUtNDk4YS05N2MyLWI3YWNhYjI1ZjZiNSIsIm1ldGFkYXRhIjp7InJ1bGUiOnsidmVyc2lvbiI6IjIwMTYtMTAiLCJhY3Rpb25zIjpbXX19fQ.Mb8EmA8pw_FBfGi5gPqiEYqUVxRjir4NUWrAF7HZHubKMR6fhOIC2-_PTQv1ZcKts5HQXk99YLRZXzEooifM55ZLVUVFJ5qYDHHm5vUcIR2nGIls6z5zr8I3PWUOJbJRk_uIjgIkMQIgTj0XqQAgbrMcUe_DgFXWbKbjdY5dcVrVcAVB8P686k1n9Iil_Js_EDTZWESR_yeRz4KhVkyZ42wn4eRLGs_jDKhBf6O7SEMzg4Ux9-Has_wO4FwHno3_PZ5yB4JMO09oeYWQXzATgEuQZHDvtIX1xbFqEmqN3_rPQHMz6-SYQ0q0-UYbjZjMXoHnVUrQh5hv9hkXVWyP5w&AccessKeyId=d724d9a53d95a810',
+    companyLogo:'https://noticias.mapfre.com/media/2018/10/LOGO-MAPFRE_POS_2536X1270.jpg',
   },
   {
     name: 'Repsol',

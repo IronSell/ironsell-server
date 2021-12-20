@@ -5,6 +5,77 @@ const JobOffer = require('../models/JobOffer.model');
 
 const jobOffers = [
   {
+    jobTitle: 'Computer technician frontend ionic angular developer',
+    experienceYears: '3+ years',
+    salary: ' 22.900 -34.770',
+    province: 'Valencia',
+    description: `In this position you will have:
+    - Innovative projects of high relevance in the company, working with cutting-edge technologies.
+    - Continuous training adapted to your needs and internal promotion.
+    - Constant learning as part of an experienced team within the IT Department.
+    - Good working environment and job security
+    - Direct contact with the best specialist suppliers`,
+    requirements:`- Higher Level Training Cycle in Computer Science
+    - Minimum experience of 3 years in the sector
+    - Knowledge in:
+    - HTML5, CSS, Javascript, JSON, Git (or version control)
+    - Angular (v5 or higher)
+    - Cordova / Ionic (ionic3 or higher)
+    - Jasmine (unit test)`,
+    schedule: 'Full-time',
+    company:'Mercadona',
+  },
+  {
+    jobTitle: 'Back Office Agent Foreclosed Assets',
+    experienceYears: '1+ year',
+    salary: '12.000€ - 15.000€',
+    province: 'Palma De Mallorca',
+    description: `- Making payments, balancing of accounts.
+    - Telematic processing with public bodies (capital gains, Ibis, taxes, garbage, Cadastre).
+    - Preparation of documentation of the Bank's adjudicated properties for sale and sending to the notary's office.
+    - Proceedings with communities of owners.`,
+    requirements:
+  `- Availability for Immediate Incorporation
+    - Responsible and methodical
+    - Previous experience in banking / real estate / management or similar position for the preparation of documents for the sale of a property.
+    - Notions on taxes, rates, capital gains, energy certificates, management of communities of owners.`,
+    schedule: 'Part-time',
+    company:'Prosegur',
+  },
+  {
+    jobTitle: 'Call Center Agent customer service and banking Backoffice',
+    experienceYears: '2+ years',
+    salary: '15.000€ - 18.000€',
+    province: 'Barcelona',
+    description: `As a Call Center Agent your duties will consist of:
+    - Reception and issuance of calls from customers of the Entity.
+    - DB management according to previously established requirements.
+    - Management of specific campaigns
+    - Attending incoming and outgoing information contacts of products and services by electronic means.`,
+    requirements:`- Languages: Spanish and native Catalan essential; English high (B2); German medium high (B1-B2).
+    - Flexibility to work shifts, weekends and holidays.
+    - Availability for immediate incorporation
+    - Communication skills
+    - Team work
+    - Experience in Banking and/or Contact Center sector
+    - Management skills
+    - Ability to solve problems
+    - Tolerance`,
+    schedule: 'Full-time',
+    company:'Prosegur',
+  },
+  {
+    jobTitle: 'Santander IT Talent Program',
+    experienceYears: '1+ year',
+    salary: '18.000€ - 24.000€',
+    province: 'Remote',
+    description: `Through the Santander IT Talent Program, you will have the opportunity to enter a specific development plan focused on digital innovation oriented to new technologies and agile methodologies where you will have training in both technical and professional skills, which will allow you to be the engine of change in Santander Technology.
+    Our goal is that you acquire the necessary skills to develop a successful career in the software industry, and that you want to continue facing professional challenges with us`,
+    requirements:'Formative cycles of the family of computer science and communications.',
+    schedule: 'Full-time',
+    company:'Santander',
+  },
+  {
     jobTitle: 'Front-end Developer',
     experienceYears: '3+ years of professional experience in software development',
     salary: '30.000 - 45.000',
@@ -57,6 +128,16 @@ const jobOffers = [
     * High motivation to learn and grow.`,
     schedule: 'Full-time',
   },
+  // {
+  //   jobTitle: '',
+  //   experienceYears: '',
+  //   salary: '',
+  //   province: '',
+  //   description: '',
+  //   requirements:'',
+  //   schedule: '',
+  //   company:'',
+  // },
 ];
 
 const MONGODB_URI = process.env.MONGODB_URI;
