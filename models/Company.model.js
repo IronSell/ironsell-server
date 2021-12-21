@@ -47,6 +47,9 @@ const companySchema = new Schema(
     },
     jobOffers: [{ type: Schema.Types.ObjectId, ref: 'JobOffer' }],
     companyUrl: { type: Schema.Types.Url },
+    linkedIn: { type: Schema.Types.Url },
+    facebook: { type: Schema.Types.Url },
+    instagram: { type: Schema.Types.Url },
     companyLogo: {
       type: String,
       default:

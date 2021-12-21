@@ -92,6 +92,7 @@ const jobOffers = [
     Experience with system architecture or leading a software team is a strong advantage
     Full-time availability is a strong advantage`,
     schedule: 'Full-time',
+    company:'',
   },
   {
     jobTitle: 'Frontend Developer (React)',
@@ -105,6 +106,8 @@ const jobOffers = [
     If you have React, CSS & JS experience, then great! If you want to work remotely, then great! If you want to relocate to the Costa del Sol in Spain, then great! But most of all if you want to work in a Hyper growth Startup with a great culture, on a great project then great!`,
     requirements: 'To ensure success as a react.js developer, you should have in-depth knowledge of JavaScript and React concepts, excellent front-end coding skills, and a good understanding of progressive web applications. Ultimately, a top-class react.js developer should be able to design and build modern user interface components to enhance application performance.',
     schedule: 'Full-time',
+    company:'',
+
   },
   {
     jobTitle: 'Angular FrontEnd Developer',
